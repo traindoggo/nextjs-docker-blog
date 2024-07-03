@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
@@ -15,9 +16,20 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
   return (
     <main className="px-32 py-4 flex flex-col">
       <header className={`flex mb-2 justify-around text-center`}>
-        <div className="text-4xl w-1/2">{blog.title}</div>
+        <div className="flex justify-around">
+          <p className="text-3xl mb-2">{blog.title}</p>
+        </div>
 
-        <div className="w-1/2">
+        <div className="flex flex-col justify-around text-sm">
+          <div className={`flex mb-2`}>
+            <Link
+              href={`/blogs/edit/${blog.id}`}
+              className={`border text-xl px-2 rounded
+                bg-yellow-900 border-yellow-900`}
+            >
+              edit
+            </Link>
+          </div>
           <p className="text-neutral-500">
             Created At :{blog.createdAt.toLocaleDateString()}
           </p>
