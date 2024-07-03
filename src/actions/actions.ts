@@ -8,6 +8,7 @@ import {
   blogSchema,
 } from "@/lib/types";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createBlog(data: TBlogSchema) {
   const validatedBlogFormData = blogSchema.safeParse(data);
@@ -24,8 +25,7 @@ export async function createBlog(data: TBlogSchema) {
     },
   });
 
-  // TODO: redirect to blog/edit page
-  revalidatePath("/");
+  redirect(`/blogs/edit/${resp.id}`);
 }
 
 export async function editBlog(data: TBlogEditSchema) {
