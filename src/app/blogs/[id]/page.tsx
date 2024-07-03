@@ -14,10 +14,10 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
 
   return (
     <main className="px-32 py-4 flex flex-col">
-      <header className={`flex mb-2 justify-around`}>
-        <div className="text-4xl">{blog.title}</div>
+      <header className={`flex mb-2 justify-around text-center`}>
+        <div className="text-4xl w-1/2">{blog.title}</div>
 
-        <div className="">
+        <div className="w-1/2">
           <p className="text-neutral-500">
             Created At :{blog.createdAt.toLocaleDateString()}
           </p>
