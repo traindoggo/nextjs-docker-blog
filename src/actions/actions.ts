@@ -1,7 +1,12 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import { TBlogSchema, blogSchema } from "@/lib/types";
+import {
+  TBlogEditSchema,
+  TBlogSchema,
+  blogEditSchema,
+  blogSchema,
+} from "@/lib/types";
 import { revalidatePath } from "next/cache";
 
 export async function createBlog(data: TBlogSchema) {
@@ -21,4 +26,25 @@ export async function createBlog(data: TBlogSchema) {
 
   // TODO: redirect to blog/edit page
   revalidatePath("/");
+}
+
+export async function editBlog(data: TBlogEditSchema) {
+  const validatedBlogEditFormdata = blogEditSchema.safeParse(data);
+
+  if (!validatedBlogEditFormdata.success) {
+    console.error(validatedBlogEditFormdata.error);
+    return;
+  }
+
+  const resp = await prisma.blog.update({
+    where: {
+      id: validatedBlogEditFormdata.data.id,
+    },
+    data: {
+      title: validatedBlogEditFormdata.data.title,
+      content: validatedBlogEditFormdata.data.content,
+    },
+  });
+
+  revalidatePath(`/blogs/edit/${resp.id}`);
 }
