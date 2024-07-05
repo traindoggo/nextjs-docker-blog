@@ -9,8 +9,8 @@ const links = [
     href: "/blogs/create",
   },
   {
-    title: "test",
-    href: "/blogs/test",
+    title: "Dashboard",
+    href: "/dashboard",
   },
 ];
 
