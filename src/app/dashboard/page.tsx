@@ -25,7 +25,7 @@ export default async function DashboardPage() {
 
         <tbody>
           {blogs.map((blog) => (
-            <tr className={``}>
+            <tr key={blog.id} className={``}>
               <td className={border_class}>{blog.id}</td>
               <td className={border_class}>{blog.title}</td>
               <td className={border_class}>{truncate(blog.content, 30)}</td>
