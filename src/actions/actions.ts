@@ -48,3 +48,13 @@ export async function editBlog(data: TBlogEditSchema) {
 
   revalidatePath(`/blogs/edit/${resp.id}`);
 }
+
+export async function deleteBlog(blogId: string, formData: FormData) {
+  const resp = await prisma.blog.delete({
+    where: {
+      id: parseInt(blogId),
+    },
+  });
+
+  redirect(`/`);
+}
