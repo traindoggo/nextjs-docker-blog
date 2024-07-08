@@ -21,13 +21,23 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
         </div>
 
         <div className="flex flex-col justify-around text-sm">
-          <div className={`flex mb-2`}>
+          <div className={`flex gap-4 mb-2`}>
             <Link
               href={`/blogs/edit/${blog.id}`}
               className={`border text-xl px-2 rounded
-                bg-yellow-900 border-yellow-900`}
+                bg-yellow-900 border-yellow-900 hover:bg-yellow-700
+                duration-100`}
             >
               edit
+            </Link>
+
+            <Link
+              href={`/blogs/delete/${blog.id}`}
+              className={`border text-xl px-2 rounded
+                bg-red-900 border-red-900 hover:bg-red-700
+                duration-100`}
+            >
+              delete
             </Link>
           </div>
           <p className="text-neutral-500">
